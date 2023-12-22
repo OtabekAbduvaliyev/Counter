@@ -1,17 +1,29 @@
-let btn1 = document.getElementById('LowBtn')
-let btn2 = document.getElementById('AddBtn')
-let res = document.getElementById('reset-btn')
-let zero = document.getElementById('zero')
-let a = 0;
-btn1.addEventListener('click',()=>{
-    a--
-    zero.innerHTML = a
-})
-btn2.addEventListener('click',()=>{
-    a++;
-    zero.innerHTML = a
-})
-res.addEventListener('click',()=>{
-    a = 0;
-    zero.innerHTML = a
-})
+// set inital value to zero
+let count = 0;
+// select value and buttons
+const value = document.querySelector("#value");
+const btns = document.querySelectorAll(".btn");
+
+btns.forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    const styles = e.currentTarget.classList;
+    if (styles.contains("decrease")) {
+      count--;
+    } else if (styles.contains("increase")) {
+      count++;
+    } else {
+      count = 0;
+    }
+
+    if (count > 0) {
+      value.style.color = "green";
+    }
+    if (count < 0) {
+      value.style.color = "red";
+    }
+    if (count === 0) {
+      value.style.color = "#222";
+    }
+    value.textContent = count;
+  });
+});
